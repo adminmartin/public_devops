@@ -5,6 +5,7 @@ pipeline {
     dockerImage = ''
   }
     agent { dockerfile true }
+      stages{
         stage('Build image') {
             steps {
                 dockerImage = docker.build("apache-image:${env.BUILD_ID}")
@@ -18,5 +19,6 @@ pipeline {
           }
         }
       }
+}
 }
 }
