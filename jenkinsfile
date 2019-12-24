@@ -8,8 +8,10 @@ pipeline {
       stages{
         stage('Build image') {
             steps {
+		script {
                 dockerImage = docker.build("apache-image:${env.BUILD_ID}")
             }
+	}
         }
     stage('Deploy Image') {
       steps{
