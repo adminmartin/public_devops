@@ -1,10 +1,21 @@
 pipeline {
+  environment {
+    registry = "martindevopsdocker/martindockerhub"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
     agent { dockerfile true }
-    stages {
-        stage('Test') {
+        stage('Build image') {
             steps {
-                sh 'hostname'
+                dockerImage = docker.build("apache-image:${env.BUILD_ID}")
             }
         }
-    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
 }
