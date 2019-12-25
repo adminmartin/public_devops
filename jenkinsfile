@@ -27,7 +27,7 @@ pipeline {
 }
     stage('Run Image') {
       steps{
-  	sh "docker run –dit --name $name –p 80:80 $registry:$BUILD_NUMBER"
+  	sh "docker run -dit --name $name -p 80:80 $registry:$BUILD_NUMBER"
         }
       }
 
