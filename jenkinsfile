@@ -29,7 +29,7 @@ pipeline {
   	sh "docker run $registry:$BUILD_NUMBER"
         }
       }
-}
+
 
 
 }
