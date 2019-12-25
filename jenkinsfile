@@ -1,11 +1,13 @@
 pipeline {
+  agent {
+    label 'docker' 
+  }
   environment {
     registry = "martindevopsdocker/martindockerhub"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
-    agent { dockerfile true }
-      stages{
+      stages
         stage('Build image') {
             steps {
 		script {
