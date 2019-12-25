@@ -6,6 +6,7 @@ pipeline {
     registry = "martindevopsdocker/martindockerhub"
     registryCredential = 'dockerhub'
     dockerImage = ''
+    name = 'apache'
   }
       stages {
         stage('Build image') {
@@ -26,7 +27,7 @@ pipeline {
 }
     stage('Run Image') {
       steps{
-  	sh "docker run –dit –p 80:80 $registry:$BUILD_NUMBER"
+  	sh "docker run –dit --name $name –p 80:80 $registry:$BUILD_NUMBER"
         }
       }
 
